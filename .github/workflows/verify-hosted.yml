@@ -1,0 +1,22 @@
+name: Verify hosted submission
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify public page and downloadable files
+        shell: python
+        run: |
+          import hashlib, urllib.request
+          expected = {'index.html': '4e3980f06bdb07aededc7347a8594870d9f7feebf9a1223d9d4575851da53229', 'style.css': '05e20b0bb4f1aeceed487f519408a3653367eda7afce70ff50f56a39dfdd5d3c', 'script.js': '3e1ed7d88b16a69dc44115e02b034066c1fdb99c27f9ad65601fcff7f5a1b5be', 'downloads/Quotes-App.zip': '6b27ba198d4ccd9d01a666b5f995cc2f18eb5d70dcdbe129f87b824e1d99f6dd', 'downloads/Quotes-App-Report.pdf': 'd24573a774806a29e0fc7a81600017988c39030f57e3e970c4077f3d49d9d492', 'downloads/Quotes-App.apk': '50176868e933eb612c101aee258ba204d382fdeea37b85ef77539f589294837b'}
+          base = 'https://engeyad.github.io/pynexia-week2-quotes/'
+          for path, digest in expected.items():
+              with urllib.request.urlopen(base + path, timeout=30) as response:
+                  content = response.read()
+                  assert response.status == 200
+              assert hashlib.sha256(content).hexdigest() == digest, path
+              print('HTTP 200 and SHA-256 match:', path)
