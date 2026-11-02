@@ -1,0 +1,11 @@
+Native Android Quotes App implemented with Java and XML. Browse original motivational practice quotes, choose another at random and share the displayed text through Android's system share sheet.
+
+Twelve original practice quotes are stored in a string-array. Next chooses randomly from all other items, avoiding an immediate repeat. TextView renders the quote and collection attribution. Buttons update the quote or open sharing. The screen scrolls on smaller displays. SharedPreferences remembers the current quote. Saved view state handles recreation. ACTION_SEND with text/plain is wrapped in an Android chooser.
+
+Run: open the source folder in Android Studio, sync Gradle, and run quotes on Android 8.0/API 26 or later (compile/target SDK 35).
+
+Validation: 3 JVM tests and 1 device tests passed on a Pixel 8 emulator, Android 17/API 37. Lint: zero errors; 47 warnings documented without suppression.
+
+A local collection of original practice text, not quotations attributed to public figures. Sharing opens a chooser and never sends a message automatically. Available destinations depend on installed apps.
+
+Hosted URL: project showcase with actual screenshots and downloads, not a browser emulator. The ZIP contains source, Gradle wrapper, debug APK, screenshots, verification and a bilingual PDF report.

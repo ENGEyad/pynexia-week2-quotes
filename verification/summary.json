@@ -1,0 +1,8 @@
+{
+  "name": "Quotes App",
+  "unit": 3,
+  "device": 1,
+  "lint_errors": 0,
+  "lint_warnings": 47,
+  "testing": "Random bounds and no immediate repeat across 1,000 selections; single/empty collection handling; UI next/recreation and exact shared Intent text."
+}
